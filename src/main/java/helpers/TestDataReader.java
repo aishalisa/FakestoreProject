@@ -1,4 +1,4 @@
-package Helpers;
+package helpers;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -6,12 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ConfigurationReader {
+public class TestDataReader {
     private final String baseURL;
-    private final String userEmail;
-    private final String userPassword;
 
-    public ConfigurationReader(){
+    public TestDataReader(){
         String configPath = "src/test/resources/configuration.properties";
         BufferedReader reader;
         try {
@@ -28,19 +26,10 @@ public class ConfigurationReader {
             throw new RuntimeException(e);
         }
         baseURL = properties.getProperty("baseURL");
-        userEmail = properties.getProperty("userEmail");
-        userPassword = properties.getProperty("userPassword");
     }
     public String getBaseURL(){
         if(!baseURL.isEmpty()) return baseURL;
         else throw new RuntimeException("\"baseURL\" is not specified in the Configuration.properties file.");
     }
 
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
 }
