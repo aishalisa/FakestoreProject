@@ -10,7 +10,7 @@ public class TestDataReader {
     private final String baseURL;
 
     public TestDataReader(){
-        String configPath = "src/test/resources/configuration.properties";
+        String configPath = "src/test/resources/testData.properties";
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(configPath));
