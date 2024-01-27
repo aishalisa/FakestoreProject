@@ -13,7 +13,6 @@ public class HomePage extends BasePage {
         super(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
-
     @FindBy(css = "#menu-menu>li:nth-child(5)")
     WebElement buttonMyAccount;
 

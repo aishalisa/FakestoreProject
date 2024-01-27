@@ -32,13 +32,13 @@ abstract public class BaseTest {
     void setup() {
         ChromeOptions options = new ChromeOptions();
         // options.addArguments("--headless==new");
+        options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
         wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(20))
                 .pollingEvery(Duration.ofMillis(300))
                 .ignoring(ElementNotInteractableException.class);
         driver.get(testData.getBaseURL());
-
     }
 
     @AfterEach
