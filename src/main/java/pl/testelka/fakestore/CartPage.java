@@ -29,6 +29,12 @@ public class CartPage extends BasePage {
     List<WebElement> cartMessages;
     @FindBy(className = "blockUI")
     WebElement spinningElement;
+    @FindBy(css = "input[type='number']")
+    WebElement numberBox;
+    @FindBy(xpath = ".//button[@name='update_cart']")
+    WebElement updateButton;
+    @FindBy(xpath = ".//span[text()='2 Produkty']")
+    WebElement cartItems;
 
     public String checkTotalSum() {
         return cartTotalSum.getText();
@@ -51,5 +57,15 @@ public class CartPage extends BasePage {
         wait.until(ExpectedConditions.invisibilityOfAllElements(spinningElement));
         return wait.until(ExpectedConditions.visibilityOfAllElements(cartMessages)).get(1).isDisplayed();
 
+    }
+
+    public void reduceProductsNumberTo1() {
+        numberBox.clear();
+        numberBox.sendKeys("2");
+        updateButton.click();
+    }
+
+    public String getNumberOfProducts() {
+       return cartItems.getText();
     }
 }

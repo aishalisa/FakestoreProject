@@ -13,7 +13,7 @@ public class YogaPilatesPage extends BasePage{
     @FindBy(xpath = ".//a[contains(@class,'add_to_cart_button')]")
     List<WebElement> addProductButtons;
     public void chooseProductTwice() {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 2; i++) {
             addProductButtons.get(2).click();
         }
     }
