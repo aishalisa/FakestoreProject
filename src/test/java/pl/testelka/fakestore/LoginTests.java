@@ -3,7 +3,7 @@ package pl.testelka.fakestore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class LoginTest extends BaseTest {
+public class LoginTests extends BaseTest {
     @Test
     public void loginValidPath() {
         HomePage homePage = new HomePage(driver);

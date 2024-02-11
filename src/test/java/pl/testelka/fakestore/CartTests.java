@@ -3,7 +3,7 @@ package pl.testelka.fakestore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CartTest extends BaseTest {
+public class CartTests extends BaseTest {
     @Test
     public void checkProductWasAddedToTheCart() {
         ShopPage shopPage = new ShopPage(driver);
@@ -40,6 +40,18 @@ public class CartTest extends BaseTest {
         CartPage cartPage = new CartPage(driver);
         cartPage.goToCartPage();
         String totalSum = cartPage.checkTotalSum();
-        Assertions.assertEquals("6 500,00 zł", totalSum, "The Total Sum of 2 products is wrong.");
+        Assertions.assertEquals("9 400,00 zł", totalSum, "The Total Sum of 3 items is wrong.");
+    }
+
+    @Test
+    public void checkProductsNumberChangedInTheCart() {
+        ShopPage shopPage = new ShopPage(driver);
+        shopPage.goToShopPage().goToSailingPage();
+        SailingPage sailingPage = new SailingPage(driver);
+        sailingPage.addTreeItemsToTheCart();
+        CartPage cartPage = new CartPage(driver);
+        cartPage.goToCartPage().reduceProductsNumberTo1();
+        String numberOfProducts = cartPage.getNumberOfProducts();
+        Assertions.assertEquals(numberOfProducts, "2 Produkty", "The number of products in the cart is wrong");
     }
 }

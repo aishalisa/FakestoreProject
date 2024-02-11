@@ -35,4 +35,9 @@ public class ShopPage extends BasePage {
         buttonShop.click();
         return this;
     }
+
+    public void goToSailingPage() {
+        demoNotice.closeDemoNotice();
+        products.get(3).click();
+    }
 }
