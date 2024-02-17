@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
 public class CartPage extends BasePage {
     protected CartPage(WebDriver driver) {
@@ -25,8 +24,8 @@ public class CartPage extends BasePage {
     WebElement productLocator;
     @FindBy(css = "td>a[data-product_sku]")
     WebElement deleteButton;
-    @FindBy(className = "wc-block-components-notice-banner__content")
-    List<WebElement> cartMessages;
+    @FindBy(xpath = ".//div[@class='woocommerce-notices-wrapper']/*[2]")
+    WebElement cartEmptyMessage;
     @FindBy(className = "blockUI")
     WebElement spinningElement;
     @FindBy(css = "input[type='number']")
@@ -35,6 +34,12 @@ public class CartPage extends BasePage {
     WebElement updateButton;
     @FindBy(xpath = ".//span[text()='2 Produkty']")
     WebElement cartItems;
+    @FindBy(id = "coupon_code")
+    WebElement couponField;
+    @FindBy(xpath = ".//button[@name='apply_coupon']")
+    WebElement couponApplyButton;
+    @FindBy(css = "tbody>tr[class='cart-subtotal']+tr")
+    WebElement couponAppliedSection;
 
     public String checkTotalSum() {
         return cartTotalSum.getText();
@@ -55,7 +60,7 @@ public class CartPage extends BasePage {
     public Boolean deleteProductFromCart() {
         deleteButton.click();
         wait.until(ExpectedConditions.invisibilityOfAllElements(spinningElement));
-        return wait.until(ExpectedConditions.visibilityOfAllElements(cartMessages)).get(1).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOf(cartEmptyMessage)).isDisplayed();
 
     }
 
@@ -66,6 +71,14 @@ public class CartPage extends BasePage {
     }
 
     public String getNumberOfProducts() {
-       return cartItems.getText();
+        return cartItems.getText();
+    }
+
+    public Boolean addCoupon() {
+        couponField.sendKeys("kwotowy250");
+        couponApplyButton.click();
+        wait.until(ExpectedConditions.invisibilityOfAllElements(spinningElement));
+        return wait.until(ExpectedConditions.visibilityOf(couponAppliedSection)).isDisplayed();
+
     }
 }
