@@ -6,10 +6,8 @@ import org.junit.jupiter.api.Test;
 public class CartTests extends BaseTest {
     @Test
     public void checkProductWasAddedToTheCart() {
-        ShopPage shopPage = new ShopPage(driver);
-        shopPage.goToShopPage().goToWindsurfingPage();
-        WindsurfingPage windsurfingPage = new WindsurfingPage(driver);
-        windsurfingPage.chooseProduct();
+        Common common = new Common(driver);
+        common.addWindsurfingProductToCart();
         CartPage cartPage = new CartPage(driver);
         cartPage.goToCartPage();
         Boolean isProductInTheCart = cartPage.checkProductVisible();
@@ -18,10 +16,8 @@ public class CartTests extends BaseTest {
 
     @Test
     public void checkProductWasDeletedFromTheCart() {
-        ShopPage shopPage = new ShopPage(driver);
-        shopPage.goToShopPage().goToWindsurfingPage();
-        WindsurfingPage windsurfingPage = new WindsurfingPage(driver);
-        windsurfingPage.chooseProduct();
+        Common common = new Common(driver);
+        common.addWindsurfingProductToCart();
         CartPage cartPage = new CartPage(driver);
         Boolean isCartEmptyMessageVisible = cartPage.goToCartPage().deleteProductFromCart();
         Assertions.assertTrue(isCartEmptyMessageVisible);
@@ -30,10 +26,9 @@ public class CartTests extends BaseTest {
 
     @Test
     public void checkTotalSumOfTheCart() {
+        Common common = new Common(driver);
+        common.addWindsurfingProductToCart();
         ShopPage shopPage = new ShopPage(driver);
-        shopPage.goToShopPage().goToWindsurfingPage();
-        WindsurfingPage windsurfingPage = new WindsurfingPage(driver);
-        windsurfingPage.chooseProduct();
         shopPage.goToShopPage().goToYogaPilatesPage();
         YogaPilatesPage yogaPilatesPage = new YogaPilatesPage(driver);
         yogaPilatesPage.chooseProductTwice();
@@ -53,5 +48,14 @@ public class CartTests extends BaseTest {
         cartPage.goToCartPage().reduceProductsNumberTo1();
         String numberOfProducts = cartPage.getNumberOfProducts();
         Assertions.assertEquals(numberOfProducts, "2 Produkty", "The number of products in the cart is wrong");
+    }
+
+    @Test
+    public void checkCouponWasApplied() {
+        Common common = new Common(driver);
+        common.addWindsurfingProductToCart();
+        CartPage cartPage = new CartPage(driver);
+        Boolean isCouponApplied = cartPage.goToCartPage().addCoupon();
+        Assertions.assertTrue(isCouponApplied, "Coupon wasn't applied");
     }
 }
