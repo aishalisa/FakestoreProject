@@ -40,6 +40,8 @@ public class CartPage extends BasePage {
     WebElement couponApplyButton;
     @FindBy(css = "tbody>tr[class='cart-subtotal']+tr")
     WebElement couponAppliedSection;
+    @FindBy(className = "wc-proceed-to-checkout")
+    WebElement checkoutButton;
 
     public String checkTotalSum() {
         return cartTotalSum.getText();
@@ -79,6 +81,10 @@ public class CartPage extends BasePage {
         couponApplyButton.click();
         wait.until(ExpectedConditions.invisibilityOfAllElements(spinningElement));
         return wait.until(ExpectedConditions.visibilityOf(couponAppliedSection)).isDisplayed();
-
     }
+    public void goToOrdersPage(){
+    checkoutButton.click();
+    }
+
+
 }
