@@ -10,9 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class LoginPage extends BasePage {
+    DemoNotice demoNotice;
     protected LoginPage(WebDriver driver) {
         super(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        demoNotice = new DemoNotice(driver);
     }
 
     @FindBy(id = "username")
@@ -23,7 +25,7 @@ public class LoginPage extends BasePage {
     WebElement loginButton;
     @FindBy(css = "h1.entry-title")
     WebElement title;
-    @FindBy(className = "is-error")
+    @FindBy(className = "woocommerce-error")
     WebElement errorPopup;
 
     public String enterCredentials() {
@@ -44,6 +46,7 @@ public class LoginPage extends BasePage {
     }
 
     public Boolean loginWithoutCredentials() {
+        demoNotice.closeDemoNotice();
         wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
         return errorPopup.isDisplayed();
     }
