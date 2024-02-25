@@ -11,6 +11,7 @@ import java.time.Duration;
 
 public class LoginPage extends BasePage {
     DemoNotice demoNotice;
+
     protected LoginPage(WebDriver driver) {
         super(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));

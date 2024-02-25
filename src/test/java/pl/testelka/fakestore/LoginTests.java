@@ -1,6 +1,7 @@
 package pl.testelka.fakestore;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 public class LoginTests extends BaseTest {
@@ -21,8 +22,9 @@ public class LoginTests extends BaseTest {
         Boolean errorPopupIsVisible = loginPage.enterWrongCredentials();
         assertTrue(errorPopupIsVisible, "No error message visible, maybe your credentials are OK?");
     }
+
     @Test
-    public void loginWithoutCredentials(){
+    public void loginWithoutCredentials() {
         HomePage homePage = new HomePage(driver);
         homePage.goToLoginPage();
         LoginPage loginPage = new LoginPage(driver);
