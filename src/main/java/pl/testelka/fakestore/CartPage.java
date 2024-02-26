@@ -56,9 +56,13 @@ public class CartPage extends BasePage {
     }
 
     public Boolean checkProductVisible() {
-        return wait.until(ExpectedConditions.visibilityOf(productLocator)).isDisplayed();
+        try {
+            return wait.until(ExpectedConditions.visibilityOf(productLocator)).isDisplayed();
+        } catch (Exception e) {
+            System.out.println("Something went wrong.");
+        }
+        return null;
     }
-
     public Boolean deleteProductFromCart() {
         deleteButton.click();
         wait.until(ExpectedConditions.invisibilityOfAllElements(spinningElement));

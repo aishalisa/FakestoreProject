@@ -3,7 +3,7 @@ package pl.testelka.fakestore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class OderTest extends BaseTest {
+public class OrderTest extends BaseTest {
     @Test
     void completeOrder() throws InterruptedException {
         Common common = new Common(driver);
