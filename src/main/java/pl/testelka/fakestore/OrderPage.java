@@ -61,16 +61,22 @@ public class OrderPage extends BasePage {
     public OrderPage enterAddressData() {
         credentials = new CredentialsReader();
         String name = credentials.getName();
+        nameField.clear();
         nameField.sendKeys(name);
         String surname = credentials.getSurname();
+        surnameField.clear();
         surnameField.sendKeys(surname);
         String street = credentials.getStreet();
+        streetField.clear();
         streetField.sendKeys(street);
         String postCode = credentials.getPostCode();
+        postcodeField.clear();
         postcodeField.sendKeys(postCode);
         String city = credentials.getCity();
+        cityField.clear();
         cityField.sendKeys(city);
         String phone = credentials.getPhone();
+        phoneField.clear();
         phoneField.sendKeys(phone);
         return this;
     }
@@ -78,16 +84,19 @@ public class OrderPage extends BasePage {
     public OrderPage enterPaymentData() throws InterruptedException {
         driver.switchTo().frame(firstFrame);
         String cardNumber = credentials.getCardNumber();
+        numberField.clear();
         numberField.sendKeys(cardNumber);
         driver.switchTo().defaultContent();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.switchTo().frame(secondFrame);
         String validDate = credentials.getValidDate();
+        expDateField.clear();
         expDateField.sendKeys(validDate);
         driver.switchTo().defaultContent();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.switchTo().frame(thirdFrame);
         String cvcNumber = credentials.getCvc();
+        numberCVCField.clear();
         numberCVCField.sendKeys(cvcNumber);
         driver.switchTo().defaultContent();
         wait.until(ExpectedConditions.elementToBeClickable(termsCheckbox)).click();
