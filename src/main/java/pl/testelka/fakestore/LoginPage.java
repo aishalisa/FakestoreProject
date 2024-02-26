@@ -23,7 +23,7 @@ public class LoginPage extends BasePage {
     WebElement loginButton;
     @FindBy(css = "h1.entry-title")
     WebElement title;
-    @FindBy(className = "is-error")
+    @FindBy(css = "ul.woocommerce-error")
     WebElement errorPopup;
 
     public String enterCredentials() {
