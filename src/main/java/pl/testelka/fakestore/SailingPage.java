@@ -19,8 +19,6 @@ public class SailingPage extends BasePage {
 
     public void addTreeItemsToTheCart() {
         for (int i = 0; i < 3; i++) {
-          //  wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(addProductButton))).click();
-           // wait.until(ExpectedConditions.elementToBeClickable(addProductButton)).click();
            addProductButton.click();
         }
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(addProductButton)));
