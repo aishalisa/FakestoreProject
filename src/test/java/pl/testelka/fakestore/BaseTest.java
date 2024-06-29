@@ -6,7 +6,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -31,13 +30,12 @@ abstract public class BaseTest {
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
-        // options.addArguments("--headless==new");
+        options.addArguments("--headless==new");
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
         wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(20))
-                .pollingEvery(Duration.ofMillis(300))
-                .ignoring(ElementNotInteractableException.class);
+                .pollingEvery(Duration.ofMillis(300));
         driver.get(testData.getBaseURL());
     }
 
